@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: {{ include "jaeger-operator.fullname" . }}
   labels:
-{{ include "jaeger-operator.labels" . | indent 4 }}
+    name: {{ include "jaeger-operator.fullname" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-{{ include "jaeger-operator.labels" . | indent 6 }}
+      name: {{ include "jaeger-operator.fullname" . }}
   template:
     metadata:
       name: {{ include "jaeger-operator.fullname" . }}
       labels:
-{{ include "jaeger-operator.labels" . | indent 8 }}
+        name: {{ include "jaeger-operator.fullname" . }}
     spec:
       {{- if .Values.serviceAccount.create }}
       serviceAccountName: {{ include "jaeger-operator.serviceAccountName" . }}
